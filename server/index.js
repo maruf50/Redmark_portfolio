@@ -72,7 +72,11 @@ app.post('/api/contact', (req, res) => {
   });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`[Server] Portfolio Node.js API running on http://localhost:${PORT}`);
-});
+// Start Server (only if executed directly, e.g. local dev)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`[Server] Portfolio Node.js API running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;

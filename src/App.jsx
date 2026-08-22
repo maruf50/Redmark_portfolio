@@ -11,16 +11,18 @@ import './styles/base.css';
 import './styles/components.css';
 
 export const App = () => {
+  const isEmbedded = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('embed') === 'true';
+
   return (
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Navbar />
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: isEmbedded ? 'auto' : '100vh' }} className={isEmbedded ? 'embedded-page' : ''}>
+          {!isEmbedded && <Navbar />}
           <main style={{ flex: 1 }}>
             <AppRoutes />
           </main>
-          <Footer />
+          {!isEmbedded && <Footer />}
         </div>
       </BrowserRouter>
     </ThemeProvider>

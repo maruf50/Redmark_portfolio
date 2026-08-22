@@ -139,46 +139,44 @@ export const Home = () => {
               position: 'relative',
               overflow: 'hidden',
               borderRadius: 'var(--radius-2xl)',
-              border: '1px solid var(--border-subtle)',
-              backgroundColor: 'var(--bg-surface)',
+              border: '1px solid #ffffff',
+              backgroundColor: '#ffffff',
+              color: '#09090b',
               padding: 'var(--space-12) var(--space-10)',
-              background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.4) 100%)',
-              boxShadow: 'var(--shadow-md)'
+              boxShadow: '0 20px 50px rgba(255, 255, 255, 0.08)'
             }}
           >
-            {/* Ambient Background Glow */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '-50%',
-                right: '-20%',
-                width: '500px',
-                height: '500px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%)',
-                pointerEvents: 'none'
-              }}
-            />
-
             <div className="grid-2" style={{ alignItems: 'center', position: 'relative', zIndex: 1 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '9999px', backgroundColor: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', width: 'fit-content' }}>
-                  <Compass size={14} style={{ color: '#38bdf8' }} />
-                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#38bdf8', fontFamily: 'var(--font-mono)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '9999px', backgroundColor: '#f4f4f5', border: '1px solid #e4e4e7', width: 'fit-content' }}>
+                  <Compass size={14} style={{ color: '#09090b' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 700, color: '#09090b', fontFamily: 'var(--font-mono)' }}>
                     INTERACTIVE EXPERIMENTAL HUB
                   </span>
                 </div>
 
-                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', letterSpacing: '-0.03em', margin: 0 }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', letterSpacing: '-0.03em', margin: 0, color: '#09090b' }}>
                   3D Interactive Space Navigation
                 </h2>
 
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ color: '#3f3f46', lineHeight: 1.7, margin: 0, fontSize: 'var(--text-base)' }}>
                   Experience an interactive 3D universe. Pilot your custom third-person spaceship through planetary sectors, engage real-time particle mechanics, and discover portfolio milestones.
                 </p>
 
                 <div style={{ paddingTop: 'var(--space-4)' }}>
-                  <Link to="/3d" className="btn btn-primary btn-lg" style={{ display: 'inline-flex', gap: '10px' }}>
+                  <Link
+                    to="/3d"
+                    className="btn btn-lg"
+                    style={{
+                      display: 'inline-flex',
+                      gap: '10px',
+                      backgroundColor: '#09090b',
+                      color: '#ffffff',
+                      borderColor: '#09090b',
+                      borderRadius: 'var(--radius-full)',
+                      fontWeight: 700
+                    }}
+                  >
                     <Rocket size={18} />
                     <span>Navigate in 3D world</span>
                     <ArrowRight size={18} />
@@ -192,27 +190,27 @@ export const Home = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'var(--space-4)',
-                  borderLeft: '1px solid var(--border-subtle)',
+                  borderLeft: '1px solid #e4e4e7',
                   paddingLeft: 'var(--space-8)'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-main)', border: '1px solid var(--border-subtle)' }}>
-                    <Sparkles size={16} style={{ color: 'var(--text-primary)' }} />
+                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: '#f4f4f5', border: '1px solid #e4e4e7' }}>
+                    <Sparkles size={16} style={{ color: '#09090b' }} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0' }}>Three.js Particle Engine</h4>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0 }}>Real-time 3D webGL graphics with fluid celestial body lighting and speed boosts.</p>
+                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0', color: '#09090b' }}>Three.js Particle Engine</h4>
+                    <p style={{ fontSize: 'var(--text-sm)', color: '#52525b', margin: 0 }}>Real-time 3D webGL graphics with fluid celestial body lighting and speed boosts.</p>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-main)', border: '1px solid var(--border-subtle)' }}>
-                    <Compass size={16} style={{ color: 'var(--text-primary)' }} />
+                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: '#f4f4f5', border: '1px solid #e4e4e7' }}>
+                    <Compass size={16} style={{ color: '#09090b' }} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0' }}>Interactive Planetary Sectors</h4>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0 }}>Fly towards target celestial bodies to lock on and inspect project archives.</p>
+                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0', color: '#09090b' }}>Interactive Planetary Sectors</h4>
+                    <p style={{ fontSize: 'var(--text-sm)', color: '#52525b', margin: 0 }}>Fly towards target celestial bodies to lock on and inspect project archives.</p>
                   </div>
                 </div>
               </div>

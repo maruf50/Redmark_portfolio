@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alex Nova — Space Portfolio</title>
-  <meta name="description" content="3D interactive space portfolio. Pilot your spaceship in third-person, fly to planets and fire to enter each section.">
+  <title>3D Interactive Space Navigation</title>
+  <meta name="description"
+    content="3D interactive space portfolio. Pilot your spaceship in third-person, fly to planets and fire to enter each section.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- ===================== 3D CANVAS ===================== -->
@@ -35,20 +40,22 @@
   <!-- Speed indicator -->
   <div id="speed-bar">
     <div class="sb-label">VELOCITY</div>
-    <div class="sb-track"><div class="sb-fill" id="sbFill"></div></div>
-    <div class="sb-boost" id="sbBoost">⚡ BOOST</div>
+    <div class="sb-track">
+      <div class="sb-fill" id="sbFill"></div>
+    </div>
+    <div class="sb-boost" id="sbBoost">BOOST</div>
   </div>
 
   <!-- ===================== INTRO SCREEN ===================== -->
   <div class="intro-screen" id="introScreen">
     <div class="intro-content">
-      <div class="intro-badge">3D INTERACTIVE PORTFOLIO</div>
-      <h1 class="intro-name">ALEX NOVA</h1>
-      <p class="intro-role">Full Stack Developer &nbsp;·&nbsp; UI/UX Enthusiast</p>
+      <div class="intro-badge">3D INTERACTIVE UNIVERSE</div>
+      <h1 class="intro-name">REDMARK 3D</h1>
+      <p class="intro-role">Interactive Navigation &nbsp;·&nbsp; Space Simulation Engine</p>
       <div class="intro-divider"></div>
       <p class="intro-instruction">
         Pilot your spaceship through the solar system.<br>
-        Each <strong>planet</strong> is a portfolio section — fly close and <strong>fire</strong> to enter.
+        Each <strong>planet</strong> represents a section — fly close and <strong>fire</strong> to enter.
       </p>
       <div class="intro-controls">
         <div class="control-item">
@@ -74,263 +81,94 @@
   <div class="hud" id="hud">
     <div class="hud-left">
       <div class="hud-pilot-label">PILOT</div>
-      <div class="hud-name">ALEX NOVA</div>
+      <div class="hud-name">REDMARK SYSTEM</div>
     </div>
     <div class="hud-right">
-      <div class="hud-hint">Mouse to steer &nbsp;·&nbsp; Click / <kbd>Space</kbd> to fire &nbsp;·&nbsp; <kbd>Shift</kbd> Boost</div>
+      <div class="hud-hint">Mouse to steer &nbsp;·&nbsp; Click / <kbd>Space</kbd> to fire &nbsp;·&nbsp; <kbd>Shift</kbd>
+        Boost</div>
     </div>
   </div>
 
   <!-- Sound Toggle -->
-  <button class="sound-btn" id="soundBtn" title="Toggle Sound">
-    <span id="soundIcon">🔊</span>
+  <button class="sound-btn" id="soundBtn" title="Toggle Sound"
+    style="width: auto; padding: 0 14px; border-radius: 9999px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">
+    <span id="soundIcon">AUDIO</span>
   </button>
 
-  <!-- Return to Main Website Button -->
-  <a href="/" target="_top" className="exit-3d-btn" style="position: fixed; top: 20px; right: 80px; z-index: 100; height: 44px; padding: 0 16px; background: rgba(10, 15, 30, 0.8); border: 1px solid rgba(0, 207, 255, 0.4); border-radius: 8px; color: #00cfff; font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-decoration: none; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px); transition: all 0.2s ease;" title="Return to Main Portfolio">
-    <span>← MAIN SITE</span>
-  </a>
 
   <!-- ===================== SECTION PANELS ===================== -->
 
-  <!-- ABOUT -->
-  <div class="section-panel" id="panel-about" role="dialog" aria-label="About Me">
-    <button class="panel-close" id="close-about">✕</button>
+  <!-- ABOUT (SECTOR 01) -->
+  <div class="section-panel" id="panel-about" role="dialog" aria-label="About">
     <div class="panel-inner">
-      <div class="panel-header" style="--accent:#00CFFF;">
-        <div class="panel-planet-icon" style="background:radial-gradient(circle at 35% 35%,#80E8FF,#00CFFF 50%,#0055AA);"></div>
-        <div>
-          <div class="panel-tag">SECTOR 01</div>
-          <h2>About Me</h2>
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>About & Engineering History</h2>
         </div>
+        <button class="panel-close" id="close-about" title="Close Panel">✕</button>
       </div>
       <div class="panel-body">
-        <div class="about-grid">
-          <div class="about-photo-col">
-            <div class="about-photo">
-              <div class="photo-inner"><div class="photo-emoji">👨‍💻</div></div>
-              <div class="photo-ring ring-1"></div>
-              <div class="photo-ring ring-2"></div>
-            </div>
-          </div>
-          <div class="about-text">
-            <h3>Hello, Universe! 👋</h3>
-            <p>I'm <strong>Alex Nova</strong>, a passionate full-stack developer with <strong>5+ years</strong> of experience building scalable web applications and delightful user experiences.</p>
-            <p>I specialize in React, Node.js, and cloud architectures — turning complex problems into elegant, performant solutions that users love.</p>
-            <p>When I'm not coding, you'll find me stargazing, exploring new tech, or shredding guitar 🎸</p>
-            <div class="about-stats">
-              <div class="stat-item"><span class="stat-num" style="color:#00CFFF;">50+</span><span class="stat-label">Projects</span></div>
-              <div class="stat-item"><span class="stat-num" style="color:#B06EFF;">5+</span><span class="stat-label">Years Exp</span></div>
-              <div class="stat-item"><span class="stat-num" style="color:#00FF9F;">30+</span><span class="stat-label">Clients</span></div>
-            </div>
-          </div>
-        </div>
+        <iframe src="/about?embed=true" class="planet-iframe" title="About Page"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS (SECTOR 02) -->
   <div class="section-panel" id="panel-projects" role="dialog" aria-label="Projects">
-    <button class="panel-close" id="close-projects">✕</button>
     <div class="panel-inner">
-      <div class="panel-header" style="--accent:#B06EFF;">
-        <div class="panel-planet-icon" style="background:radial-gradient(circle at 35% 35%,#D4AAFF,#B06EFF 50%,#440077);"></div>
-        <div>
-          <div class="panel-tag">SECTOR 02</div>
-          <h2>Projects</h2>
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Selected Works & Architecture</h2>
         </div>
+        <button class="panel-close" id="close-projects" title="Close Panel">✕</button>
       </div>
       <div class="panel-body">
-        <div class="projects-grid">
-          <div class="project-card" style="--accent:#B06EFF;">
-            <div class="project-header"><span class="project-icon">🚀</span><span class="project-tag" style="color:#B06EFF;background:rgba(176,110,255,0.12);">Web App</span></div>
-            <h3>NovaDash</h3>
-            <p>Real-time analytics dashboard built with React and WebSockets, handling 100k+ events/second.</p>
-            <div class="project-tech"><span>React</span><span>Node.js</span><span>Redis</span></div>
-            <div class="project-links">
-              <a href="#" class="project-link" style="color:#B06EFF;">Live Demo</a>
-              <a href="#" class="project-link" style="color:#B06EFF;">GitHub</a>
-            </div>
-          </div>
-          <div class="project-card" style="--accent:#00FF9F;">
-            <div class="project-header"><span class="project-icon">🤖</span><span class="project-tag" style="color:#00FF9F;background:rgba(0,255,159,0.1);">AI/ML</span></div>
-            <h3>AstroAI</h3>
-            <p>ML pipeline for image classification achieving 98.5% accuracy on custom astronomical datasets.</p>
-            <div class="project-tech"><span>Python</span><span>TensorFlow</span><span>FastAPI</span></div>
-            <div class="project-links">
-              <a href="#" class="project-link" style="color:#00FF9F;">Live Demo</a>
-              <a href="#" class="project-link" style="color:#00FF9F;">GitHub</a>
-            </div>
-          </div>
-          <div class="project-card" style="--accent:#FFD700;">
-            <div class="project-header"><span class="project-icon">📱</span><span class="project-tag" style="color:#FFD700;background:rgba(255,215,0,0.1);">Mobile</span></div>
-            <h3>StarWallet</h3>
-            <p>Cross-platform mobile app for crypto portfolio management with live price tracking.</p>
-            <div class="project-tech"><span>React Native</span><span>GraphQL</span><span>AWS</span></div>
-            <div class="project-links">
-              <a href="#" class="project-link" style="color:#FFD700;">App Store</a>
-              <a href="#" class="project-link" style="color:#FFD700;">GitHub</a>
-            </div>
-          </div>
-          <div class="project-card" style="--accent:#FF6B9D;">
-            <div class="project-header"><span class="project-icon">🌐</span><span class="project-tag" style="color:#FF6B9D;background:rgba(255,107,157,0.1);">Open Source</span></div>
-            <h3>CosmicUI</h3>
-            <p>React component library with 50+ components, 2k+ GitHub stars, full TypeScript support.</p>
-            <div class="project-tech"><span>TypeScript</span><span>Storybook</span><span>Jest</span></div>
-            <div class="project-links">
-              <a href="#" class="project-link" style="color:#FF6B9D;">Docs</a>
-              <a href="#" class="project-link" style="color:#FF6B9D;">GitHub</a>
-            </div>
-          </div>
-        </div>
+        <iframe src="/works?embed=true" class="planet-iframe" title="Projects Page"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- SKILLS -->
+  <!-- SKILLS (SECTOR 03) -->
   <div class="section-panel" id="panel-skills" role="dialog" aria-label="Skills">
-    <button class="panel-close" id="close-skills">✕</button>
     <div class="panel-inner">
-      <div class="panel-header" style="--accent:#00FF9F;">
-        <div class="panel-planet-icon" style="background:radial-gradient(circle at 35% 35%,#80FFD0,#00FF9F 50%,#006633);"></div>
-        <div>
-          <div class="panel-tag">SECTOR 03</div>
-          <h2>Skills</h2>
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Capabilities & Technology Matrix</h2>
         </div>
+        <button class="panel-close" id="close-skills" title="Close Panel">✕</button>
       </div>
       <div class="panel-body">
-        <div class="skills-grid">
-          <div class="skills-category">
-            <h3 style="color:#00FF9F;">Frontend</h3>
-            <div class="skill-item"><div class="skill-label"><span>React / Next.js</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95" style="--c:#00FF9F;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>TypeScript</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90" style="--c:#00FF9F;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>CSS / Animations</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" data-width="92" style="--c:#00FF9F;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>Vue.js</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75" style="--c:#00FF9F;"></div></div></div>
-          </div>
-          <div class="skills-category">
-            <h3 style="color:#00CFFF;">Backend</h3>
-            <div class="skill-item"><div class="skill-label"><span>Node.js / Express</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88" style="--c:#00CFFF;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>Python / Django</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82" style="--c:#00CFFF;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>PostgreSQL / MongoDB</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85" style="--c:#00CFFF;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>GraphQL</span><span>78%</span></div><div class="skill-bar"><div class="skill-fill" data-width="78" style="--c:#00CFFF;"></div></div></div>
-          </div>
-          <div class="skills-category">
-            <h3 style="color:#B06EFF;">DevOps &amp; Cloud</h3>
-            <div class="skill-item"><div class="skill-label"><span>AWS / GCP</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80" style="--c:#B06EFF;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>Docker / Kubernetes</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75" style="--c:#B06EFF;"></div></div></div>
-            <div class="skill-item"><div class="skill-label"><span>CI/CD Pipelines</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85" style="--c:#B06EFF;"></div></div></div>
-          </div>
-        </div>
+        <iframe src="/services?embed=true" class="planet-iframe" title="Skills & Services Page"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- EXPERIENCE -->
+  <!-- EXPERIENCE (SECTOR 04) -->
   <div class="section-panel" id="panel-experience" role="dialog" aria-label="Experience">
-    <button class="panel-close" id="close-experience">✕</button>
     <div class="panel-inner">
-      <div class="panel-header" style="--accent:#FFD700;">
-        <div class="panel-planet-icon" style="background:radial-gradient(circle at 35% 35%,#FFEE88,#FFD700 50%,#AA6600);"></div>
-        <div>
-          <div class="panel-tag">SECTOR 04</div>
-          <h2>Experience</h2>
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Work Experience & System History</h2>
         </div>
+        <button class="panel-close" id="close-experience" title="Close Panel">✕</button>
       </div>
       <div class="panel-body">
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:#FFD700;box-shadow:0 0 12px #FFD700;"></div>
-            <div class="timeline-content">
-              <div class="timeline-period">2022 — Present</div>
-              <h3>Senior Full Stack Developer</h3>
-              <div class="timeline-company">🏢 TechNova Inc.</div>
-              <p>Led development of microservices architecture serving 2M+ users. Mentored a team of 6 developers.</p>
-              <div class="timeline-tags"><span>React</span><span>AWS</span><span>GraphQL</span><span>K8s</span></div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:#00CFFF;box-shadow:0 0 12px #00CFFF;"></div>
-            <div class="timeline-content">
-              <div class="timeline-period">2020 — 2022</div>
-              <h3>Frontend Developer</h3>
-              <div class="timeline-company">🌐 DigitalCraft Studio</div>
-              <p>Built high-performance SPAs and component libraries. Reduced bundle size by 45%.</p>
-              <div class="timeline-tags"><span>Vue.js</span><span>TypeScript</span><span>Webpack</span></div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:#00FF9F;box-shadow:0 0 12px #00FF9F;"></div>
-            <div class="timeline-content">
-              <div class="timeline-period">2019 — 2020</div>
-              <h3>Junior Web Developer</h3>
-              <div class="timeline-company">💡 StartupHub</div>
-              <p>Developed and maintained multiple client websites, integrating third-party APIs and payment gateways.</p>
-              <div class="timeline-tags"><span>JavaScript</span><span>PHP</span><span>MySQL</span></div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:#B06EFF;box-shadow:0 0 12px #B06EFF;"></div>
-            <div class="timeline-content">
-              <div class="timeline-period">2015 — 2019</div>
-              <h3>BSc Computer Science</h3>
-              <div class="timeline-company">🎓 Cosmos University</div>
-              <p>Graduated with First Class Honours. Thesis on distributed systems and real-time data processing.</p>
-              <div class="timeline-tags"><span>Algorithms</span><span>Distributed Systems</span><span>ML</span></div>
-            </div>
-          </div>
-        </div>
+        <iframe src="/about?embed=true" class="planet-iframe" title="Experience Page"></iframe>
       </div>
     </div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (SECTOR 05) -->
   <div class="section-panel" id="panel-contact" role="dialog" aria-label="Contact">
-    <button class="panel-close" id="close-contact">✕</button>
     <div class="panel-inner">
-      <div class="panel-header" style="--accent:#FF6B9D;">
-        <div class="panel-planet-icon" style="background:radial-gradient(circle at 35% 35%,#FFAAC8,#FF6B9D 50%,#AA0055);"></div>
-        <div>
-          <div class="panel-tag">SECTOR 05</div>
-          <h2>Contact</h2>
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <h2>Contact & Technical Collaboration</h2>
         </div>
+        <button class="panel-close" id="close-contact" title="Close Panel">✕</button>
       </div>
       <div class="panel-body">
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Let's Build Something Cosmic! 🚀</h3>
-            <p>I'm always open to exciting projects, collaborations, or just a chat about technology and the universe.</p>
-            <div class="social-links">
-              <a href="#" class="social-link" style="color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);">🐙 GitHub</a>
-              <a href="#" class="social-link" style="color:#0099DD;border-color:rgba(0,153,221,0.3);">💼 LinkedIn</a>
-              <a href="#" class="social-link" style="color:#1DA1F2;border-color:rgba(29,161,242,0.3);">🐦 Twitter</a>
-              <a href="#" class="social-link" style="color:#FFD700;border-color:rgba(255,215,0,0.3);">📄 Resume</a>
-            </div>
-            <div class="contact-email">
-              <span>📧</span>
-              <a href="mailto:alex@nova.dev" style="color:#FF6B9D;text-decoration:none;">alex@nova.dev</a>
-            </div>
-            <div class="contact-email" style="margin-top:8px;">
-              <span>📍</span>
-              <span>San Francisco, CA — Open to Remote</span>
-            </div>
-          </div>
-          <form class="contact-form" id="contactForm">
-            <div class="form-group">
-              <label for="contact-name">Name</label>
-              <input type="text" id="contact-name" placeholder="Your name" required autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="contact-email">Email</label>
-              <input type="email" id="contact-email" placeholder="your@email.com" required autocomplete="email">
-            </div>
-            <div class="form-group">
-              <label for="contact-message">Message</label>
-              <textarea id="contact-message" rows="4" placeholder="What's on your mind?" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message 🚀</button>
-            <div class="form-success" id="formSuccess">✅ Message sent! I'll be in touch soon.</div>
-          </form>
-        </div>
+        <iframe src="/contact?embed=true" class="planet-iframe" title="Contact Page"></iframe>
       </div>
     </div>
   </div>
@@ -339,4 +177,5 @@
   <script src="js/three.min.js"></script>
   <script src="js/game.js"></script>
 </body>
+
 </html>
