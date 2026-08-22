@@ -7,6 +7,7 @@ import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Contact } from './pages/Contact';
 import { CustomPageTemplate } from './pages/CustomPageTemplate';
+import { ThreeDWorld } from './pages/ThreeDWorld';
 import { ArrowLeft } from 'lucide-react';
 
 const NotFound = () => (
@@ -36,6 +37,7 @@ export const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/3d" element={<ThreeDWorld />} />
         
         {/* Boilerplate template for user to duplicate or preview */}
         <Route path="/custom-template" element={<CustomPageTemplate />} />

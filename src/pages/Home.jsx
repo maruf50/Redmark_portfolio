@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight, Terminal, Cpu, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Terminal, Cpu, Layers, ShieldCheck, CheckCircle2, Compass, Sparkles, Rocket } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import { ProjectCard } from '../components/ProjectCard';
 
@@ -127,6 +127,96 @@ export const Home = () => {
             {featuredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3D Navigation Showcase Section */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div
+            style={{
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: 'var(--radius-2xl)',
+              border: '1px solid var(--border-subtle)',
+              backgroundColor: 'var(--bg-surface)',
+              padding: 'var(--space-12) var(--space-10)',
+              background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.4) 100%)',
+              boxShadow: 'var(--shadow-md)'
+            }}
+          >
+            {/* Ambient Background Glow */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-50%',
+                right: '-20%',
+                width: '500px',
+                height: '500px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                pointerEvents: 'none'
+              }}
+            />
+
+            <div className="grid-2" style={{ alignItems: 'center', position: 'relative', zIndex: 1 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '9999px', backgroundColor: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', width: 'fit-content' }}>
+                  <Compass size={14} style={{ color: '#38bdf8' }} />
+                  <span style={{ fontSize: '12px', fontWeight: 600, color: '#38bdf8', fontFamily: 'var(--font-mono)' }}>
+                    INTERACTIVE EXPERIMENTAL HUB
+                  </span>
+                </div>
+
+                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', letterSpacing: '-0.03em', margin: 0 }}>
+                  3D Interactive Space Navigation
+                </h2>
+
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, margin: 0 }}>
+                  Experience an interactive 3D universe. Pilot your custom third-person spaceship through planetary sectors, engage real-time particle mechanics, and discover portfolio milestones.
+                </p>
+
+                <div style={{ paddingTop: 'var(--space-4)' }}>
+                  <Link to="/3d" className="btn btn-primary btn-lg" style={{ display: 'inline-flex', gap: '10px' }}>
+                    <Rocket size={18} />
+                    <span>Navigate in 3D world</span>
+                    <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Visual Card Graphic / Feature Grid */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--space-4)',
+                  borderLeft: '1px solid var(--border-subtle)',
+                  paddingLeft: 'var(--space-8)'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-main)', border: '1px solid var(--border-subtle)' }}>
+                    <Sparkles size={16} style={{ color: 'var(--text-primary)' }} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0' }}>Three.js Particle Engine</h4>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0 }}>Real-time 3D webGL graphics with fluid celestial body lighting and speed boosts.</p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                  <div style={{ padding: '8px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-main)', border: '1px solid var(--border-subtle)' }}>
+                    <Compass size={16} style={{ color: 'var(--text-primary)' }} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: 'var(--text-base)', margin: '0 0 4px 0' }}>Interactive Planetary Sectors</h4>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0 }}>Fly towards target celestial bodies to lock on and inspect project archives.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ export const Navbar = () => {
   const navItems = [
     { label: 'Overview', path: '/' },
     { label: 'Works', path: '/works' },
+    { label: '3D World', path: '/3d' },
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Contact', path: '/contact' },
