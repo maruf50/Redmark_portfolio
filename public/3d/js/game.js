@@ -47,6 +47,17 @@ let shootCd = 0;
 let gameRunning = false, soundOn = true, audioCtx = null;
 let mouse = { x: 0, y: 0 };
 
+// GYROSCOPE & MOBILE STATE
+let gyroAvailable = false;
+let gyroEnabled = true;
+let gyroPermissionGranted = false;
+let gyroRawX = 0, gyroRawY = 0;
+let gyroBaselineBeta = null, gyroBaselineGamma = null;
+let isTouchDevice = false;
+let touchSteerX = 0, touchSteerY = 0;
+let isTouchSteering = false;
+let touchStartX = 0, touchStartY = 0;
+
 // ─── INIT ─────────────────────────────────────────────────────────────
 function init() {
   W = window.innerWidth;
@@ -91,6 +102,7 @@ function init() {
   setupTrail();
 
   // Events + UI
+  checkGyroAndTouchSupport();
   setupControls();
   setupUI();
 
@@ -411,6 +423,113 @@ function tickTrail() {
   trailGeo.attributes.position.needsUpdate = true;
 }
 
+// ─── GYROSCOPE & TOUCH HANDLERS ───────────────────────────────────────
+function checkGyroAndTouchSupport() {
+  isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  if (isTouchDevice) {
+    document.body.classList.add('is-touch');
+  }
+  if (typeof DeviceOrientationEvent !== 'undefined') {
+    gyroAvailable = true;
+  }
+  updateGyroUI();
+}
+
+async function requestGyroPermission() {
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+      const response = await DeviceOrientationEvent.requestPermission();
+      if (response === 'granted') {
+        gyroPermissionGranted = true;
+        enableGyro();
+        return true;
+      } else {
+        gyroEnabled = false;
+        updateGyroUI();
+        return false;
+      }
+    } catch (e) {
+      console.warn('Gyro permission request error:', e);
+      gyroEnabled = false;
+      updateGyroUI();
+      return false;
+    }
+  } else if (typeof DeviceOrientationEvent !== 'undefined') {
+    gyroPermissionGranted = true;
+    enableGyro();
+    return true;
+  }
+  return false;
+}
+
+function enableGyro() {
+  window.removeEventListener('deviceorientation', handleOrientation);
+  window.addEventListener('deviceorientation', handleOrientation, true);
+  recalibrateGyro();
+}
+
+function recalibrateGyro() {
+  gyroBaselineBeta = null;
+  gyroBaselineGamma = null;
+}
+
+function handleOrientation(event) {
+  if (!gyroEnabled || event.beta === null || event.gamma === null) return;
+
+  const beta = event.beta;
+  const gamma = event.gamma;
+
+  if (gyroBaselineBeta === null || gyroBaselineGamma === null) {
+    gyroBaselineBeta = beta;
+    gyroBaselineGamma = gamma;
+  }
+
+  let normX = 0;
+  let normY = 0;
+
+  const orientationType = (screen.orientation && screen.orientation.type) || '';
+  const winOrient = window.orientation;
+
+  if (orientationType.includes('landscape-primary') || winOrient === 90) {
+    normX = (beta - gyroBaselineBeta) / 25;
+    normY = -(gamma - gyroBaselineGamma) / 20;
+  } else if (orientationType.includes('landscape-secondary') || winOrient === -90 || winOrient === 270) {
+    normX = -(beta - gyroBaselineBeta) / 25;
+    normY = (gamma - gyroBaselineGamma) / 20;
+  } else {
+    // Standard Portrait
+    normX = (gamma - gyroBaselineGamma) / 25;
+    normY = (beta - gyroBaselineBeta) / 20;
+  }
+
+  normX = Math.max(-1, Math.min(1, normX));
+  normY = Math.max(-1, Math.min(1, normY));
+
+  const DZ = 0.04;
+  gyroRawX = Math.abs(normX) > DZ ? normX : 0;
+  gyroRawY = Math.abs(normY) > DZ ? normY : 0;
+}
+
+function updateGyroUI() {
+  const gyroBtn = document.getElementById('gyroBtn');
+  const gyroIcon = document.getElementById('gyroIcon');
+  if (!gyroBtn) return;
+
+  if (!gyroAvailable && !isTouchDevice) {
+    gyroBtn.style.display = 'none';
+    return;
+  }
+
+  gyroBtn.style.display = 'flex';
+  if (gyroEnabled) {
+    gyroBtn.classList.remove('off');
+    if (gyroIcon) gyroIcon.textContent = 'GYRO: ON';
+  } else {
+    gyroBtn.classList.add('off');
+    if (gyroIcon) gyroIcon.textContent = 'GYRO: OFF';
+  }
+}
+
 // ─── SHIP UPDATE ──────────────────────────────────────────────────────
 function tickShip() {
   const isPaused = !!document.querySelector('.section-panel.active');
@@ -420,9 +539,20 @@ function tickShip() {
     return;
   }
 
-  const DZ = 0.06;
-  const rawX = Math.abs((mouse.x - W / 2) / (W / 2)) > DZ ? (mouse.x - W / 2) / (W / 2) : 0;
-  const rawY = Math.abs((mouse.y - H / 2) / (H / 2)) > DZ ? (mouse.y - H / 2) / (H / 2) : 0;
+  let rawX = 0;
+  let rawY = 0;
+
+  if (gyroEnabled && (gyroRawX !== 0 || gyroRawY !== 0)) {
+    rawX = gyroRawX;
+    rawY = gyroRawY;
+  } else if (isTouchSteering) {
+    rawX = touchSteerX;
+    rawY = touchSteerY;
+  } else {
+    const DZ = 0.06;
+    rawX = Math.abs((mouse.x - W / 2) / (W / 2)) > DZ ? (mouse.x - W / 2) / (W / 2) : 0;
+    rawY = Math.abs((mouse.y - H / 2) / (H / 2)) > DZ ? (mouse.y - H / 2) / (H / 2) : 0;
+  }
 
   smoX += (rawX - smoX) * STEER_SMO;
   smoY += (rawY - smoY) * STEER_SMO;
@@ -763,7 +893,7 @@ function setupControls() {
 
   window.addEventListener('click', e => {
     if (!gameRunning) return;
-    if (e.target.closest('.section-panel, .sound-btn, .launch-btn')) return;
+    if (e.target.closest('.section-panel, .sound-btn, .gyro-btn, .launch-btn, .mobile-btn, .exit-3d-btn')) return;
     shoot();
   });
 
@@ -774,6 +904,40 @@ function setupControls() {
   });
   window.addEventListener('keyup', e => {
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') isBoosting = false;
+  });
+
+  // Mobile Touch Steering & Fire
+  window.addEventListener('touchstart', e => {
+    if (!gameRunning) return;
+    if (e.target.closest('.section-panel, .sound-btn, .gyro-btn, .launch-btn, .mobile-btn, .exit-3d-btn')) return;
+
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    isTouchSteering = true;
+
+    shoot();
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    if (!gameRunning || !isTouchSteering) return;
+    if (e.target.closest('.section-panel, .sound-btn, .gyro-btn, .launch-btn, .mobile-btn, .exit-3d-btn')) return;
+
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+    const maxDist = Math.min(W, H) * 0.35;
+
+    touchSteerX = Math.max(-1, Math.min(1, dx / maxDist));
+    touchSteerY = Math.max(-1, Math.min(1, dy / maxDist));
+  }, { passive: true });
+
+  window.addEventListener('touchend', e => {
+    if (e.touches.length === 0) {
+      isTouchSteering = false;
+      touchSteerX = 0;
+      touchSteerY = 0;
+    }
   });
 
   window.addEventListener('resize', () => {
@@ -788,7 +952,10 @@ function setupControls() {
 function setupUI() {
   const launchBtn = document.getElementById('launchBtn');
   if (launchBtn) {
-    launchBtn.addEventListener('click', () => {
+    launchBtn.addEventListener('click', async () => {
+      if (gyroAvailable) {
+        await requestGyroPermission();
+      }
       const intro = document.getElementById('introScreen');
       if (intro) {
         intro.classList.add('fade-out');
@@ -800,6 +967,23 @@ function setupUI() {
     });
   }
 
+  const gyroBtn = document.getElementById('gyroBtn');
+  if (gyroBtn) {
+    gyroBtn.addEventListener('click', async () => {
+      if (!gyroPermissionGranted && gyroAvailable) {
+        const granted = await requestGyroPermission();
+        if (granted) gyroEnabled = true;
+      } else {
+        gyroEnabled = !gyroEnabled;
+        if (gyroEnabled) {
+          recalibrateGyro();
+          enableGyro();
+        }
+      }
+      updateGyroUI();
+    });
+  }
+
   const soundBtn = document.getElementById('soundBtn');
   if (soundBtn) {
     soundBtn.addEventListener('click', () => {
@@ -807,6 +991,17 @@ function setupUI() {
       const soundIcon = document.getElementById('soundIcon');
       if (soundIcon) soundIcon.textContent = soundOn ? 'AUDIO' : 'MUTED';
     });
+  }
+
+  const touchBoostBtn = document.getElementById('touchBoostBtn');
+  if (touchBoostBtn) {
+    touchBoostBtn.addEventListener('touchstart', e => { e.preventDefault(); isBoosting = true; });
+    touchBoostBtn.addEventListener('touchend', e => { e.preventDefault(); isBoosting = false; });
+  }
+
+  const touchFireBtn = document.getElementById('touchFireBtn');
+  if (touchFireBtn) {
+    touchFireBtn.addEventListener('touchstart', e => { e.preventDefault(); shoot(); });
   }
 
   document.querySelectorAll('.panel-close').forEach(btn => {

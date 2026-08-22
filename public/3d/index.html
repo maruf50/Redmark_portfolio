@@ -59,16 +59,16 @@
       </p>
       <div class="intro-controls">
         <div class="control-item">
-          <span>Move mouse to steer your ship</span>
+          <span>Move mouse or <strong>tilt phone (Gyro)</strong> to steer</span>
         </div>
         <div class="control-item">
-          <span>Left click or <kbd>Space</kbd> to fire</span>
+          <span>Tap screen / click or <kbd>Space</kbd> to fire</span>
         </div>
         <div class="control-item">
-          <span>Hold <kbd>Shift</kbd> to boost speed</span>
+          <span>Hold <kbd>Shift</kbd> or Boost button to accelerate</span>
         </div>
         <div class="control-item">
-          <span><kbd>Esc</kbd> to return to space</span>
+          <span><kbd>Esc</kbd> or ✕ to return to space</span>
         </div>
       </div>
       <button class="launch-btn" id="launchBtn">
@@ -84,16 +84,26 @@
       <div class="hud-name">REDMARK SYSTEM</div>
     </div>
     <div class="hud-right">
-      <div class="hud-hint">Mouse to steer &nbsp;·&nbsp; Click / <kbd>Space</kbd> to fire &nbsp;·&nbsp; <kbd>Shift</kbd>
-        Boost</div>
+      <div class="hud-hint">Tilt Phone / Mouse steer &nbsp;·&nbsp; Tap / Click to fire &nbsp;·&nbsp; Boost</div>
     </div>
   </div>
+
+  <!-- Gyroscope Toggle Button -->
+  <button class="gyro-btn" id="gyroBtn" title="Toggle & Recalibrate Gyro Steering">
+    <span id="gyroIcon">GYRO: ON</span>
+  </button>
 
   <!-- Sound Toggle -->
   <button class="sound-btn" id="soundBtn" title="Toggle Sound"
     style="width: auto; padding: 0 14px; border-radius: 9999px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">
     <span id="soundIcon">AUDIO</span>
   </button>
+
+  <!-- Mobile On-Screen Touch Controls -->
+  <div class="mobile-controls" id="mobileControls">
+    <button class="mobile-btn mobile-boost-btn" id="touchBoostBtn">BOOST</button>
+    <button class="mobile-btn mobile-fire-btn" id="touchFireBtn">FIRE</button>
+  </div>
 
 
   <!-- ===================== SECTION PANELS ===================== -->
