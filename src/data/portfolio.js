@@ -24,6 +24,27 @@ export const portfolioData = {
 
   projects: [
     {
+      id: "motionfx",
+      title: "MotionFX — Browser Motion Graphics Studio",
+      category: "Frontend & UI",
+      year: "2026",
+      summary: "A modern, browser-based motion graphics creator web application where anyone can design basic and custom motion graphics animations directly within the browser.",
+      challenge: "Delivering desktop-grade motion graphic design capabilities — including multi-track timeline sequencing, parametric easing curves, kinetic typography, and high-framerate video export — entirely client-side with zero server dependencies.",
+      solution: "Engineered a high-performance Next.js and Tailwind CSS web studio utilizing HTML5 Canvas 2D for real-time raster rendering, mathematical keyframe interpolation, and MediaRecorder stream capture for instant video export.",
+      metrics: ["60 FPS Canvas", "100% Client-Side", "0 Server Latency", "Instant Export"],
+      stack: ["Next.js", "Tailwind CSS", "TypeScript", "HTML5 Canvas", "MediaRecorder API", "Lucide React"],
+      liveUrl: "https://maruf50.github.io/MotionFX/",
+      githubUrl: "https://github.com/maruf50/MotionFX",
+      featured: true,
+      architecturePoints: [
+        "Interactive multi-track timeline sequencer with sub-frame keyframe evaluation",
+        "Kinetic typography engine with typewriter, cyber morph, and wave transformations",
+        "Real-time 60 FPS HTML5 Canvas stream capture via MediaRecorder API",
+        "Responsive, state-driven animation studio built with Next.js and Tailwind CSS"
+      ]
+    },
+
+    {
       id: "hyperion-engine",
       title: "Hyperion Distributed Event Mesh",
       category: "Architecture & Cloud",
@@ -107,7 +128,7 @@ export const portfolioData = {
   skills: {
     languages: ["TypeScript", "JavaScript (ESNext)", "SQL", "HTML5", "CSS3 / Custom Properties"],
     backend: ["Node.js", "Express", "REST APIs", "GraphQL", "PostgreSQL", "Redis", "WebSockets"],
-    frontend: ["React 18", "React Router", "Vite", "Design Systems", "Manrope & Web Typography", "WCAG Accessibility"],
+    frontend: ["React 18", "Next.js", "Tailwind CSS", "React Router", "Vite", "Design Systems", "Manrope & Web Typography", "WCAG Accessibility"],
     devops: ["Docker", "Git / GitHub Actions", "CI/CD Pipelines", "Linux / Shell", "AWS / GCP", "Nginx"]
   },
 
