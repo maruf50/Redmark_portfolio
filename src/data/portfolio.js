@@ -44,26 +44,7 @@ export const portfolioData = {
       ]
     },
 
-    {
-      id: "hyperion-engine",
-      title: "Hyperion Distributed Event Mesh",
-      category: "Architecture & Cloud",
-      year: "2025",
-      summary: "Ultra-low-latency event streaming engine handling real-time telemetry and state distribution across multi-region nodes.",
-      challenge: "Processing over 50,000 telemetry events per second with sub-15ms end-to-end latency while maintaining strict ordering guarantees across geo-distributed worker nodes.",
-      solution: "Engineered an asynchronous Node.js streaming architecture coupled with zero-copy buffer serialization and distributed Redis cluster replication.",
-      metrics: ["50k+ events/sec", "<12ms latency", "0% data drop"],
-      stack: ["Node.js", "Redis Cluster", "WebSockets", "Docker", "TypeScript"],
-      liveUrl: "https://example.com/hyperion",
-      githubUrl: "https://github.com/example/hyperion-engine",
-      featured: true,
-      architecturePoints: [
-        "Zero-copy stream buffer parsing",
-        "Deterministic raft-based cluster consensus",
-        "Automated backpressure control under peak traffic",
-        "Edge routing with health-check failover"
-      ]
-    },
+
     {
       id: "monolith-ui",
       title: "Monolith Design System & Token Engine",
@@ -88,34 +69,10 @@ export const portfolioData = {
 
   experience: [
     {
-      role: "Lead Systems Architect",
-      company: "Vector Grid Systems",
-      period: "2023 — Present",
-      location: "Remote",
-      description: "Spearheaded the design and rollout of a distributed microservice platform handling real-time telemetry data. Mentored 12 engineers across backend and frontend guilds.",
-      highlights: [
-        "Reduced p99 API response times by 48% across core endpoints",
-        "Designed and standardized company-wide TypeScript/Node.js architectural guidelines",
-        "Architected multi-region failover strategy with zero planned downtime"
-      ]
-    },
-    {
-      role: "Senior Fullstack Engineer",
-      company: "Apex Digital Labs",
-      period: "2021 — 2023",
-      location: "San Francisco / Remote",
-      description: "Built mission-critical React web applications, internal developer tools, and Node.js REST/GraphQL APIs for high-growth enterprise clients.",
-      highlights: [
-        "Engineered token-driven design system adopted across 8 distinct web applications",
-        "Replaced legacy monolith with event-driven microservices architecture",
-        "Achieved 100/100 Core Web Vitals score across public facing portals"
-      ]
-    },
-    {
       role: "Software Engineer",
-      company: "Kinesis Interactive",
-      period: "2019 — 2021",
-      location: "New York, NY",
+      company: "Redmark inc",
+      period: "2019 — 2026",
+      location: "Dhaka, Bangladesh",
       description: "Developed performant user interfaces, real-time dashboards, and Node.js microservices. Integrated third-party payment and identity providers.",
       highlights: [
         "Developed custom real-time data visualization charts in React and SVG",
